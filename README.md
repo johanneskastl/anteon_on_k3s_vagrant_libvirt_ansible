@@ -4,7 +4,8 @@ Vagrant-libvirt setup that creates a VM with [k3s](https://k3s.io/), the minimal
 lightweight Kubernetes distribution.
 
 On top of k3s, this setup installs [Anteon](https://getanteon.com/) (formerly
-known as ddosify).
+known as ddosify). It also installs an instance of Nginx and a MinIO instance,
+just to have some workload in the cluster.
 
 Default OS is openSUSE Leap 15.6, but that can be changed in the Vagrantfile.
 Please be aware, that this might break the Ansible provisioning.
@@ -17,11 +18,19 @@ Please be aware, that this might break the Ansible provisioning.
 1. Make sure the git submodules are fully working by issuing
    `git submodule init && git submodule update`
 1. Run `vagrant up`
-1. Run `kubectl --kubeconfig ansible/k3s-kubeconfig get nodes` and you should
-   see your server.
+1. Open the URL that Ansible printed out at the end of the provisioning. It
+   should look something like `http://anteon.192.168.2.13.sslip.io`.
 1. Party!
 
 ## Cleaning up
 
 The VMs can be torn down after playing around using `vagrant destroy`. This will
 also remove the kubeconfig file `ansible/k3s-kubeconfig`.
+
+## License
+
+BSD-3-Clause
+
+## Author Information
+
+I am Johannes Kastl, reachable via git@johannes-kastl.de
